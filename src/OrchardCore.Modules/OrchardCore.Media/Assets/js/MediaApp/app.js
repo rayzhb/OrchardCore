@@ -254,6 +254,19 @@ function initializeMediaApplication(displayMediaApplication, mediaApplicationUrl
                     unSelectAll: function () {
                         this.selectedMedias = [];
                     },
+                    toggleSelect: function (elem) {
+                        if (elem.currentTarget.checked == false)
+                        {
+                            this.selectedMedias = [];
+                        }
+                        else
+                        {
+                            this.selectedMedias = [];
+                            for (var i = 0; i < this.filteredMediaItems.length; i++) {
+                                this.selectedMedias.push(this.filteredMediaItems[i]);
+                            }
+                        }
+                    },
                     invertSelection: function () {
                         var temp = [];
                         for (var i = 0; i < this.filteredMediaItems.length; i++) {

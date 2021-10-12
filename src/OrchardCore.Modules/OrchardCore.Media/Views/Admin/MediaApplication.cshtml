@@ -24,34 +24,24 @@
             <div class="media-container-top-bar">
                 <nav class="nav action-bar pb-3 pt-3 pl-3">
                     <div class="form-inline mr-auto">
-                        <a href="javascript:;" class="btn btn-light btn-sm mr-2" v-on:click="selectAll">
-                            @T["Select All"]
-                        </a>
-                        <a href="javascript:;" class="btn btn-light btn-sm mr-2" v-on:click="unSelectAll" :class="{disabled: selectedMedias.length < 1 }">
-                            @T["Select None"]
-                        </a>
-                        <a href="javascript:;" class="btn btn-light btn-sm mr-2" v-on:click="invertSelection">
-                            @T["Invert"]
-                        </a>
-                        <a href="javascript:;" class="btn btn-light btn-sm mr-2" v-on:click="deleteMediaList" :class="{disabled: selectedMedias.length < 1 }">
-                            @T["Delete"] <span class="badge badge-pill badge-light" v-show="selectedMedias.length > 0">{{ selectedMedias.length}}</span>
-                        </a>
+                        <div class="custom-control custom-checkbox">
+                            <input v-on:click="toggleSelect" type="checkbox" class="custom-control-input" id="toggle-select" >
+                            <label title="@T["Select All"]" class="custom-control-label" for="toggle-select"></label>
+                        </div>
+                        <span title="@T["Invert"]" class="cursor-pointer mr-2" v-on:click="invertSelection">
+                            <i class="fas fa-exchange-alt" aria-hidden="true"></i>
+                        </span>
+                        <span title="@T["Delete"]" class="cursor-pointer mr-2" v-show="selectedMedias.length > 0" v-on:click="deleteMediaList">
+                            <i class="fas fa-trash-alt" aria-hidden="true"></i> {{ selectedMedias.length}}
+                        </span>
                     </div>
-                    <div class="btn-group visibility-buttons">
-                        <button type="button" id="toggle-grid-table-button" class="btn btn-light btn-sm" :class="{selected: gridView}" v-on:click="gridView = true">
-                            <span title="@T["Grid View"]"><i class="fa fa-th-large" aria-hidden="true"></i></span>
-                        </button>
-                        <button type="button" id="toggle-grid-table-button" class="btn btn-light btn-sm" :class="{selected: !gridView}" v-on:click="gridView = false">
-                            <span title="@T["List View"]"><i class="fa fa-th-list" aria-hidden="true"></i></span>
-                        </button>
+                    <div class="form-inline visibility-buttons">
+                        <span title="@T["Grid View"]" class="cursor-pointer mr-2" :class="{selected: gridView}" v-on:click="gridView = true"><i class="fa fa-th-large" aria-hidden="true"></i></span>
+                        <span title="@T["List View"]" class="cursor-pointer mr-2" :class="{selected: !gridView}" v-on:click="gridView = false"><i class="fa fa-th-list" aria-hidden="true"></i></span>
                     </div>
-                    <div class="btn-group visibility-buttons" v-show="gridView">
-                        <button type="button" id="toggle-thumbsize-button" class="btn btn-light btn-sm" :class="{selected: smallThumbs}" v-on:click="smallThumbs = true">
-                            <span title="@T["Small Thumbs"]"><i class="fa fa-compress" aria-hidden="true"></i></span>
-                        </button>
-                        <button type="button" id="toggle-thumbsize-button" class="btn btn-light btn-sm mr-2" :class="{selected: !smallThumbs}" v-on:click="smallThumbs = false">
-                            <span title="@T["Large Thumbs"]"><i class="fa fa-expand" aria-hidden="true"></i></span>
-                        </button>
+                    <div class="form-inline visibility-buttons" v-show="gridView">
+                        <span title="@T["Small Thumbs"]" class="cursor-pointer mr-2" :class="{selected: smallThumbs}" v-on:click="smallThumbs = true"><i class="fa fa-compress" aria-hidden="true"></i></span>
+                        <span title="@T["Large Thumbs"]" class="cursor-pointer mr-2" :class="{selected: !smallThumbs}" v-on:click="smallThumbs = false"><i class="fa fa-expand" aria-hidden="true"></i></span>
                     </div>
 
                     <div class="nav-item ml-2">
